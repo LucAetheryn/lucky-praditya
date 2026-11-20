@@ -1,7 +1,8 @@
-import subprocess, time, json
+import subprocess, time, json, atexit, sys
 from playwright.sync_api import sync_playwright
 import os; D=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..')
 srv=subprocess.Popen(['python3','-m','http.server','8766','-d',D],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
+atexit.register(srv.terminate)
 MOCK=r"""
 (()=>{const S=window.__S=window.__S||{creates:0,rpc:[],saves:[],uploads:[],users:{'admin@x.io':{pw:'pw1',admin:true,mfa:true},'user@x.io':{pw:'pw2',admin:false,mfa:false},'new@x.io':{pw:'pw3',admin:true,mfa:false}}};
 const key='mock-session';const ses=()=>JSON.parse(localStorage.getItem(key)||'null');
@@ -128,3 +129,4 @@ with sync_playwright() as p:
     b.close()
 srv.terminate()
 print('\n%d/%d passed'%(sum(1 for _,x in R if x),len(R)))
+sys.exit(0 if all(x for _, x in R) else 1)

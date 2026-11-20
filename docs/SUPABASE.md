@@ -58,7 +58,7 @@ Jangan mengembalikan signature RPC lama satu parameter tanpa meninjau ulang fron
   2. Leaked Password Protection belum aktif. Fitur ini memerlukan paket Supabase Pro pada konfigurasi proyek saat ini.
 - Tidak ada Error yang dilaporkan pada pemeriksaan Security Advisor terakhir.
 - CSP dasar telah ditambahkan ke `index.html`. Kebijakan masih mengizinkan inline style dan frame same-origin sesuai kebutuhan aplikasi.
-- SRI untuk SDK CDN belum ditambahkan karena hash SHA-384 yang valid belum tersedia. Jangan menebak hash.
+- SRI SHA-384 diterapkan pada Supabase JS 2.45.4; hash telah dicocokkan dengan isi file CDN.
 - Custom domain dapat dipertimbangkan untuk isolasi origin GitHub Pages dan sesi admin.
 
 ## 5. Status pengujian
@@ -75,7 +75,7 @@ Belum selesai atau belum diverifikasi secara otomatis:
 - Browser test harness dengan 34 assertion belum dijalankan. Jangan menganggap pengujian tersebut lulus.
 - RLS checks pada `supabase/tests/rls_checks.sql` belum memiliki hasil eksekusi otomatis yang terdokumentasi setelah migrasi.
 - Pengujian SQL parser/PostgreSQL terpisah belum dilakukan dari lingkungan kerja ini.
-- SRI SDK CDN belum diterapkan.
+- SRI SDK CDN telah diterapkan dan diverifikasi.
 
 ## 6. Pemeliharaan
 

@@ -32,7 +32,7 @@
 
 - Browser test harness berisi 34 assertion belum dijalankan. Playwright dan Chromium tidak tersedia di lingkungan Termux ini; jangan menganggap pengujian lulus.
 - Belum ada hasil pengujian otomatis terpisah menggunakan SQL parser atau rangkaian RLS checks setelah penerapan.
-- SRI untuk SDK CDN belum ditambahkan karena hash yang akurat belum tersedia.
+- SRI SHA-384 telah diterapkan pada Supabase JS 2.45.4 dan hash-nya berhasil diverifikasi langsung terhadap file CDN.
 
 ## Catatan keamanan dan pemeliharaan
 
