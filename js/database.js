@@ -21,7 +21,7 @@ function cleanCfg(c){
   if(!c||typeof c!=="object"||Array.isArray(c))throw E("Configuration must be an object.","cfg");
   const o=clone0(c),w=[],str=(v,n)=>String(v==null?"":v).slice(0,n),
     url=(v,l,mail)=>{v=String(v||"").trim();if(!v)return"";if(/^(https?:\/\/|mailto:|tel:)/i.test(v))return v.slice(0,2048);if(mail&&/^[^\s@<>"']+@[^\s@<>"']+$/.test(v))return v.slice(0,320);w.push(l+": invalid URL cleared");return""},
-    img=(v,l)=>{v=String(v||"");if(!v)return"";if(/^data:image\/(png|jpeg|webp|gif);base64,/i.test(v)||/^https:\/\//i.test(v))return v;throw E(l+": unsupported image format (PNG, JPEG, WebP or GIF only).","img")},
+    img=(v,l)=>{v=String(v||"");if(!v)return"";if(/^data:image\//i.test(v)||/^https:\/\//i.test(v))return v;throw E(l+": unsupported image format (PNG, JPEG, WebP or GIF only).","img")},
     num=(v,a,b,d)=>{v=+v;return isFinite(v)?Math.min(b,Math.max(a,v)):d};
   ["connections","highlights","now","sections"].forEach(k=>{if(!Array.isArray(o[k]))throw E("Invalid configuration list: "+k,"cfg")});
   ["seo","anim","look","avail","stack"].forEach(k=>{if(!o[k]||typeof o[k]!=="object"||Array.isArray(o[k]))throw E("Invalid configuration object: "+k,"cfg")});
