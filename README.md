@@ -16,7 +16,15 @@ js/
   config.js           # konten default, penyimpanan lokal, helper
   site.js             # render situs publik, overlay, event
   control-center.js   # Control Center + Live Preview
-  main.js             # routing & boot (dimuat TERAKHIR)
+  supabase.js         # konfigurasi (URL + publishable key), client hanya di luar preview
+  auth.js             # login, verifikasi admin, TOTP MFA, sesi
+  storage.js          # upload gambar ke Supabase Storage
+  database.js         # baca publik, baca admin, simpan via RPC
+  migration.js        # backup, perbandingan sumber, keamanan, media (tab Backup)
+  main.js             # route guard & boot (dimuat TERAKHIR)
+supabase/             # SQL USULAN (belum dijalankan) dan uji RLS
+docs/SUPABASE.md      # ringkasan arsitektur integrasi
+tools/                # uji browser dengan Supabase tiruan (Playwright)
 assets/               # aset statis (kosong untuk saat ini)
 ```
 
@@ -29,4 +37,9 @@ assets/               # aset statis (kosong untuk saat ini)
 
 ## Status
 
-Tahap 1 — pemisahan file dari `Lucky_Praditya.html`. Belum ada Supabase, perubahan autentikasi, atau deployment.
+Tahap 2 — integrasi Supabase (kode). Belum ada commit/deployment. Lihat `docs/SUPABASE.md`.
+
+
+## Laporan implementasi
+
+Lihat `IMPLEMENTATION-REPORT.md` untuk perubahan hardening Stage 2, pemeriksaan yang berhasil, dan batas pengujian yang belum dapat dilakukan. SQL di `supabase/migrations/` tetap proposal dan belum dijalankan.

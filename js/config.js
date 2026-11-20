@@ -10,9 +10,10 @@ connections:[["github","LucAetheryn","https://github.com/LucAetheryn"],["instagr
 const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 let saved,draft,tab="dash",dev="desk",filt="All",hi=-1,tm;
-function load(){try{const r=localStorage.getItem(KEY);if(r){const o=Object.assign(DEF(),pre(JSON.parse(r)));if(!o.sections.some(x=>x.id==="skills")){o.sections.splice(o.sections.findIndex(x=>x.id==="about")+1,0,{id:"skills",t:"Tech Stack",show:true,nav:true})}return mig(o)}}catch(e){}return DEF()}
+const normCfg=o=>{o=Object.assign(DEF(),pre(o));["anim","look","avail","seo"].forEach(k=>{o[k]=Object.assign(DEF()[k],o[k]||{})});if(!o.sections.some(x=>x.id==="skills")){o.sections.splice(o.sections.findIndex(x=>x.id==="about")+1,0,{id:"skills",t:"Tech Stack",show:true,nav:true})}return mig(o)};
+function load(){try{const r=localStorage.getItem(KEY);if(r)return normCfg(JSON.parse(r))}catch(e){}return DEF()}
 const persist=c=>{try{localStorage.setItem(KEY,JSON.stringify(c));return true}catch(e){return false}};
-saved=load();draft=JSON.parse(JSON.stringify(saved));
+saved=(!EMB&&LOCAL)?load():DEF();draft=JSON.parse(JSON.stringify(saved));
 const cfg=()=>document.body.classList.contains("admin")?draft:saved;
 const toast=m=>{let t=$("#tt");if(!t){t=document.createElement("div");t.id="tt";t.className="glass";t.style.cssText="position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:12px 18px;border-radius:16px;z-index:300;max-width:90vw;font-size:.88rem";document.body.append(t)}t.textContent=m;t.hidden=false;clearTimeout(toast.i);toast.i=setTimeout(()=>t.hidden=true,2800)};
 const href=l=>!l.u?null:(l.l==="Email"&&!/^mailto:/.test(l.u)?"mailto:"+l.u:l.u);

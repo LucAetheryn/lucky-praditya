@@ -5,18 +5,19 @@ const HTYPES=["Video","Post","Reel","Track","Playlist","Repository","Release","A
 /* Integration registry (architecture only): a backend adapter would register {id, platform, fetchLatest(authorizedSession)} here.
    No adapter is connected in this static prototype, so every Highlight is added manually. */
 const ADAPTERS={};
+const imgOk=u=>/^(https:\/\/|data:image\/(png|jpeg|webp|gif);base64,)/i.test(u||"")?u:"",hexOk=h=>/^#[0-9a-f]{6}$/i.test(h||"");
 const safe=u=>/^(https?:\/\/|mailto:)/i.test(u||"")?u:"";
 const hexA=(h,a)=>{const n=parseInt(h.slice(1),16);return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`};
 const fmt=d=>{const x=new Date(d+"T00:00:00");return isNaN(x)?d:x.toLocaleDateString("en",{day:"numeric",month:"short",year:"numeric"})};
 const picon=k=>{const e=PICONS["p:"+k];if(!e)return"";const [p,v]=typeof e==="string"?[e,"0 0 24 24"]:[e.p,e.v];return `<svg viewBox="${v}" aria-hidden="true" fill="currentColor"><path d="${p}"/></svg>`};
-function plat(cn){const d=PLM[cn.p]||[],main=cn.color||d[3]||"#7C3AED",g=cn.color?[cn.color,cn.color]:(d[4]||[main,main]);return{name:cn.name||d[1]||"Custom",main,grad:g,ico:cn.icon?`<img src="${cn.icon}" alt="">`:picon(cn.p)}}
+function plat(cn){const d=PLM[cn.p]||[],main=hexOk(cn.color)?cn.color:d[3]||"#7C3AED",g=hexOk(cn.color)?[cn.color,cn.color]:(d[4]||[main,main]);return{name:cn.name||d[1]||"Custom",main,grad:g,ico:imgOk(cn.icon)?`<img src="${esc(cn.icon)}" alt="">`:picon(cn.p)}}
 const CUST=()=>({name:"Update",main:"#A78BFA",grad:["#7C3AED","#06B6D4"],ico:`<img src="${LOGO}" alt="">`});
 const nstyle=(m,g=40)=>`--ac:${m.main};--bg2:linear-gradient(135deg,${m.grad.join(",")});--gb:${(6+g*.2).toFixed(1)}px;--gc:${hexA(m.main,(g/100*.5).toFixed(2))}`;
 function cnHTML(cn,link){const m=plat(cn),u=cn.p==="email"&&cn.url&&!/^mailto:/.test(cn.url)?"mailto:"+cn.url:safe(cn.url);
   const inner=`<span class="ci">${m.ico}</span><span class="cx"><b>${esc(m.name)}</b><small>${esc(cn.user||(cn.p==="email"?cn.url:""))}</small></span><span class="mu">${link?"↗":""}</span>`;
   return link&&u?`<a class="card glass cn nb" style="${nstyle(m,cn.glow)}" href="${esc(u)}" ${u.startsWith("mailto:")?"":'target="_blank" rel="noopener noreferrer"'}>${inner}</a>`:`<div class="card glass cn nb" style="${nstyle(m,cn.glow)}">${inner}</div>`}
 function hlHTML(c,h){const cn=c.connections.find(x=>x.id===h.plat),m=cn?plat(cn):CUST();
-  return `<button class="card glass hc nb" style="${nstyle(m,cn?cn.glow:40)}" data-hl="${h.i}"><div class="ht">${h.thumb?`<img class="htimg" src="${h.thumb}" alt="" loading="lazy">`:""}<span class="hp">${m.ico}<b>${esc(m.name)}</b></span>${h.pin?'<span class="pin">Pinned</span>':""}</div><span class="mu">${esc(h.type)}${h.date?" · "+esc(fmt(h.date)):""}</span><h3>${esc(h.t)}</h3><p>${esc(h.d)}</p></button>`}
+  return `<button class="card glass hc nb" style="${nstyle(m,cn?cn.glow:40)}" data-hl="${h.i}"><div class="ht">${imgOk(h.thumb)?`<img class="htimg" src="${esc(h.thumb)}" alt="" loading="lazy">`:""}<span class="hp">${m.ico}<b>${esc(m.name)}</b></span>${h.pin?'<span class="pin">Pinned</span>':""}</div><span class="mu">${esc(h.type)}${h.date?" · "+esc(fmt(h.date)):""}</span><h3>${esc(h.t)}</h3><p>${esc(h.d)}</p></button>`}
 const HLV=c=>c.highlights.map((h,i)=>({...h,i})).filter(h=>h.show&&(!h.plat||c.connections.some(x=>x.id===h.plat&&x.show&&x.pub))).sort((a,b)=>(b.pin?1:0)-(a.pin?1:0));
 const MAPL={GitHub:"github",Instagram:"instagram",YouTube:"youtube",TikTok:"tiktok",LinkedIn:"linkedin",Discord:"discord",Email:"email"};
 const pre=j=>{if(j&&!Array.isArray(j.connections)&&Array.isArray(j.links)){const c=j.links.filter(l=>l.u&&MAPL[l.l]).map((l,i)=>({id:"c"+(i+1),p:MAPL[l.l],name:"",user:"",url:l.u,color:"",icon:"",glow:40,show:l.show!==false,pub:true,hl:true}));if(c.length){if(!c.some(x=>x.p==="email"))c.push({id:"c"+(c.length+1),p:"email",name:"",user:"",url:"",color:"",icon:"",glow:40,show:true,pub:true,hl:true});j.connections=c}}return j};

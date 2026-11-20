@@ -4,3 +4,7 @@ node_modules/
 .env
 .env.*
 *.local
+
+# Private site configuration export
+site-config-export.json
+migration.sql
