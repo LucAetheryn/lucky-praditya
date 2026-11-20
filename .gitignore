@@ -8,3 +8,8 @@ node_modules/
 # Private site configuration export
 site-config-export.json
 migration.sql
+
+# Local test artifacts
+__pycache__/
+*.py[cod]
+*.bak
