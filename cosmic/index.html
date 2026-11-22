@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>LUCKY PRADITYA CONNECTION — Beyond the Stars, Beyond the Limits</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Premium Cinematic Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            space: ['Space Grotesk', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            void: '#03050a',
+            midnight: '#091124',
+            nebulaPurple: '#1c1138',
+            cosmicViolet: '#4c2889',
+            etherealCyan: '#7dd3fc',
+            starlight: '#fff8e7',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Base Reset & Prevent Horizontal Overflow */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #03050a;
+      color: #f8fafc;
+      overflow-x: hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Fullscreen Cosmic Canvas */
+    #cosmos-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Subtle Cinema Film Grain Overlay */
+    .film-grain {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      animation: grainShift 8s steps(10) infinite;
+    }
+
+    @keyframes grainShift {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-2%, -3%); }
+      20% { transform: translate(-4%, 2%); }
+      30% { transform: translate(3%, -4%); }
+      40% { transform: translate(-2%, 4%); }
+      50% { transform: translate(4%, 1%); }
+      60% { transform: translate(-3%, -2%); }
+      70% { transform: translate(2%, 3%); }
+      80% { transform: translate(-1%, -4%); }
+      90% { transform: translate(3%, 2%); }
+    }
+
+    /* Cinematic Vignette */
+    .cinema-vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, transparent 45%, rgba(3, 5, 10, 0.72) 100%);
+    }
+
+    /* Typography Light Sweep Effect */
+    .brand-shimmer {
+      background: linear-gradient(
+        110deg,
+        rgba(255, 248, 231, 0.85) 0%,
+        rgba(255, 255, 255, 1) 42%,
+        rgba(125, 211, 252, 0.95) 50%,
+        rgba(255, 255, 255, 1) 58%,
+        rgba(255, 248, 231, 0.85) 100%
+      );
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: lightSweep 7s ease-in-out infinite;
+    }
+
+    @keyframes lightSweep {
+      0% { background-position: 200% center; }
+      50% { background-position: 0% center; }
+      100% { background-position: -200% center; }
+    }
+
+    /* Glassmorphic Executive Cards */
+    .cosmic-glass {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.45), rgba(9, 17, 36, 0.28));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, background 0.4s ease;
+    }
+
+    .cosmic-glass:hover {
+      border-color: rgba(125, 211, 252, 0.32);
+      background: linear-gradient(145deg, rgba(22, 33, 62, 0.56), rgba(14, 22, 46, 0.38));
+      transform: translateY(-3px);
+    }
+
+    /* Smooth Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #03050a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(125, 211, 252, 0.25);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(125, 211, 252, 0.45);
+    }
+
+    /* Custom Range Slider for Cosmic Controls */
+    input[type="range"].cosmic-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(148, 163, 184, 0.18);
+      height: 4px;
+      border-radius: 999px;
+      outline: none;
+    }
+    input[type="range"].cosmic-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #7dd3fc;
+      box-shadow: 0 0 12px rgba(125, 211, 252, 0.85);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    input[type="range"].cosmic-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-sky-400/20 selection:text-sky-200">
+
+  <!-- Background Cosmic Canvas -->
+  <canvas id="cosmos-canvas"></canvas>
+
+  <!-- Atmospheric Vignette & Subtle Cinema Grain -->
+  <div class="cinema-vignette"></div>
+  <div class="film-grain"></div>
+
+  <!-- Top Utility Bar (Audio Toggle & Intro Telemetry) -->
+  <header class="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5 pointer-events-none">
+    <!-- Left Status / Telemetry Pill -->
+    <div id="telemetry-badge" class="pointer-events-auto flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-950/50 backdrop-blur-md border border-white/10 text-[11px] font-space tracking-[0.2em] uppercase text-slate-300/90 transition-all duration-700">
+      <span id="telemetry-dot" class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse shadow-[0_0_8px_#38bdf8]"></span>
+      <span id="telemetry-label">SCENE 01 · DEEP VOID</span>
+    </div>
+
+    <!-- Right Controls: Ambient Cinema Audio + Skip / Replay -->
+    <div class="pointer-events-auto flex items-center gap-2.5 sm:gap-3">
+      <!-- Synthesized Cosmic Audio Toggle -->
+      <button
+        id="audio-toggle-btn"
+        type="button"
+        aria-label="Toggle Cosmic Ambient Sound"
+        class="group flex items-center gap-2 px-3.5 py-2 rounded-full bg-slate-950/55 hover:bg-slate-900/75 backdrop-blur-md border border-white/10 hover:border-sky-400/40 text-xs font-space tracking-wider text-slate-300 transition-all duration-300 cursor-pointer"
+      >
+        <svg id="icon-sound-off" class="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <line x1="23" y1="9" x2="17" y2="15" />
+          <line x1="17" y1="9" x2="23" y2="15" />
+        </svg>
+        <svg id="icon-sound-on" class="w-3.5 h-3.5 text-sky-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+        </svg>
+        <span id="audio-label" class="hidden sm:inline text-[11px] uppercase tracking-[0.16em]">Sound Off</span>
+      </button>
+
+      <!-- Skip Intro Button (Visible during splash sequence) -->
+      <button
+        id="skip-intro-btn"
+        type="button"
+        class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.14] backdrop-blur-md border border-white/15 hover:border-sky-300/40 text-[11px] font-space uppercase tracking-[0.2em] text-slate-200 transition-all duration-300 cursor-pointer"
+      >
+        <span>Skip Intro</span>
+        <svg class="w-3 h-3 text-sky-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="13 17 18 12 13 7" />
+          <polyline points="6 17 11 12 6 7" />
+        </svg>
+      </button>
+
+      <!-- Replay Intro Button (Visible in Home Interface) -->
+      <button
+        id="replay-intro-btn"
+        type="button"
+        class="hidden items-center gap-2 px-4 py-2 rounded-full bg-sky-500/10 hover:bg-sky-400/20 backdrop-blur-md border border-sky-400/25 hover:border-sky-300/50 text-[11px] font-space uppercase tracking-[0.18em] text-sky-200 transition-all duration-300 cursor-pointer"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+          <path d="M3 3v5h5" />
+        </svg>
+        <span>Replay Launch</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- CINEMATIC SPLASH SCREEN OVERLAY (Scenes 1–7) -->
+  <section
+    id="splash-overlay"
+    class="fixed inset-0 z-20 flex flex-col items-center justify-center px-6 pointer-events-none select-none transition-opacity duration-1000"
+  >
+    <!-- Scene 7 Brand Title Lockup -->
+    <div id="splash-brand-container" class="text-center max-w-4xl mx-auto opacity-0 transform translate-y-4 transition-all duration-1000 ease-out">
+      <!-- Subtle Celestial Emblem Above Title -->
+      <div class="flex items-center justify-center gap-3 mb-4 sm:mb-5">
+        <span class="h-[1px] w-8 sm:w-14 bg-gradient-to-r from-transparent to-sky-300/60"></span>
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-amber-100 drop-shadow-[0_0_12px_rgba(255,248,231,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 1L14.3 9.7L23 12L14.3 14.3L12 23L9.7 14.3L1 12L9.7 9.7L12 1Z" />
+        </svg>
+        <span class="h-[1px] w-8 sm:w-14 bg-gradient-to-l from-transparent to-sky-300/60"></span>
+      </div>
+
+      <!-- Main Brand Title -->
+      <h1
+        id="splash-title"
+        class="font-cinzel font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-[3.4rem] tracking-[0.22em] sm:tracking-[0.3em] leading-tight brand-shimmer drop-shadow-[0_4px_30px_rgba(56,189,248,0.28)]"
+      >
+        LUCKY PRADITYA CONNECTION
+      </h1>
+
+      <!-- Brand Tagline -->
+      <p
+        id="splash-tagline"
+        class="mt-4 sm:mt-5 font-space font-light text-xs sm:text-sm md:text-base tracking-[0.28em] sm:tracking-[0.38em] uppercase text-sky-200/85 opacity-0 transform translate-y-2 transition-all duration-1000 delay-300"
+      >
+        Beyond the Stars, Beyond the Limits.
+      </p>
+    </div>
+
+    <!-- Bottom Minimal Timeline Scrubber / Progress Bar -->
+    <div id="splash-progress-wrapper" class="fixed bottom-7 sm:bottom-9 left-1/2 -translate-x-1/2 w-[82%] max-w-md flex flex-col items-center gap-2.5 transition-opacity duration-700">
+      <div class="w-full h-[2px] bg-white/10 rounded-full overflow-hidden">
+        <div
+          id="splash-progress-bar"
+          class="h-full w-0 bg-gradient-to-r from-violet-400 via-sky-300 to-amber-100 shadow-[0_0_10px_rgba(125,211,252,0.8)] transition-[width] duration-75 ease-linear"
+        ></div>
+      </div>
+      <div class="w-full flex justify-between text-[10px] font-space tracking-[0.22em] uppercase text-slate-400/75">
+        <span id="scene-caption">Awakening the Cosmos</span>
+        <span id="scene-timer">00.0s / 08.5s</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 8+: MAIN APPLICATION HOME INTERFACE -->
+  <main
+    id="main-interface"
+    class="relative z-10 min-h-screen w-full flex flex-col justify-between pt-24 pb-12 px-4 sm:px-8 lg:px-14 opacity-0 pointer-events-none translate-y-6 transition-all duration-1000 ease-out"
+  >
+    <!-- Hero Brand & Executive Portal Header -->
+    <div class="max-w-6xl mx-auto w-full my-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <!-- Orbital Badge -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-sky-400/[0.08] border border-sky-300/20 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-200 shadow-[0_0_8px_#fde68a]"></span>
+          <span class="font-space text-[11px] uppercase tracking-[0.26em] text-sky-200/90">Cosmic Horizon Portal · Active</span>
+        </div>
+
+        <!-- Persistent Brand Identity -->
+        <h2 class="font-cinzel font-semibold text-2xl sm:text-4xl md:text-5xl tracking-[0.2em] sm:tracking-[0.26em] brand-shimmer leading-snug">
+          LUCKY PRADITYA CONNECTION
+        </h2>
+
+        <p class="mt-4 font-space text-xs sm:text-sm md:text-base tracking-[0.26em] uppercase text-sky-200/80">
+          Beyond the Stars, Beyond the Limits.
+        </p>
+
+        <p class="mt-6 text-sm sm:text-base text-slate-300/85 font-light leading-relaxed max-w-2xl mx-auto">
+          Guided by curiosity and driven by purposeful innovation, Lucky Praditya Connection bridges visionary ideas, human connection, and limitless digital exploration across an ever-expanding universe of possibilities.
+        </p>
+
+        <!-- Primary Action Buttons -->
+        <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
+          <button
+            type="button"
+            onclick="triggerStarPulse()"
+            class="group relative inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-violet-600/80 via-indigo-600/80 to-sky-500/80 hover:from-violet-500 hover:to-sky-400 text-white font-space text-xs sm:text-sm uppercase tracking-[0.2em] border border-sky-300/30 shadow-[0_0_30px_rgba(56,189,248,0.28)] transition-all duration-300 cursor-pointer"
+          >
+            <svg class="w-4 h-4 text-amber-100 group-hover:rotate-45 transition-transform duration-500" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L14.3 9.7L23 12L14.3 14.3L12 23L9.7 14.3L1 12L9.7 9.7L12 1Z" />
+            </svg>
+            <span>Ignite Guiding Star</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="toggleUniversePanel()"
+            class="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.1] backdrop-blur-md border border-white/15 hover:border-sky-300/40 text-slate-200 font-space text-xs sm:text-sm uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer"
+          >
+            <svg class="w-4 h-4 text-sky-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <span>Cosmic Telemetry</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Cosmic Telemetry Drawer (Collapsible) -->
+      <div id="universe-controls-panel" class="hidden max-w-3xl mx-auto mb-10 cosmic-glass rounded-2xl p-5 sm:p-6 transition-all duration-500">
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+            <h3 class="font-space text-xs uppercase tracking-[0.22em] text-sky-200">Ambient Universe Controls</h3>
+          </div>
+          <span class="font-space text-[11px] text-slate-400">60 FPS Engine</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <!-- Velocity / Warp Drift -->
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between text-xs font-space text-slate-300">
+              <span>Orbital Velocity</span>
+              <span id="val-speed" class="text-sky-300">1.0x</span>
+            </div>
+            <input id="ctrl-speed" type="range" min="0.2" max="2.5" step="0.1" value="1.0" class="cosmic-slider w-full" />
+          </div>
+
+          <!-- Nebula Luminance -->
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between text-xs font-space text-slate-300">
+              <span>Nebula Radiance</span>
+              <span id="val-nebula" class="text-violet-300">100%</span>
+            </div>
+            <input id="ctrl-nebula" type="range" min="0.3" max="1.6" step="0.1" value="1.0" class="cosmic-slider w-full" />
+          </div>
+
+          <!-- Starlight Trail Density -->
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between text-xs font-space text-slate-300">
+              <span>Ion Trail Intensity</span>
+              <span id="val-trail" class="text-amber-200">100%</span>
+            </div>
+            <input id="ctrl-trail" type="range" min="0.4" max="1.8" step="0.1" value="1.0" class="cosmic-slider w-full" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Three Core Pillars (Constellation Grid) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        <!-- Pillar 1 -->
+        <article
+          onclick="selectConstellation(0)"
+          class="cosmic-glass rounded-2xl p-6 sm:p-7 cursor-pointer group"
+        >
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-400/25 flex items-center justify-center text-violet-300 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" />
+              </svg>
+            </div>
+            <span class="font-space text-[11px] tracking-[0.2em] uppercase text-slate-400">01 · Vision</span>
+          </div>
+          <h3 class="font-cinzel text-lg tracking-[0.12em] text-white mb-2.5 group-hover:text-sky-200 transition-colors">
+            Celestial Ambition
+          </h3>
+          <p class="text-sm text-slate-300/80 font-light leading-relaxed">
+            Like a vessel pursuing a distant guiding star, every initiative is charted toward bold horizons, transformative craft, and enduring impact.
+          </p>
+        </article>
+
+        <!-- Pillar 2 -->
+        <article
+          onclick="selectConstellation(1)"
+          class="cosmic-glass rounded-2xl p-6 sm:p-7 cursor-pointer group"
+        >
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center text-sky-300 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="9" />
+                <ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(-28 12 12)" />
+                <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="font-space text-[11px] tracking-[0.2em] uppercase text-slate-400">02 · Synergy</span>
+          </div>
+          <h3 class="font-cinzel text-lg tracking-[0.12em] text-white mb-2.5 group-hover:text-sky-200 transition-colors">
+            Infinite Connection
+          </h3>
+          <p class="text-sm text-slate-300/80 font-light leading-relaxed">
+            Uniting people, technology, and creative intelligence across vast distances—turning isolated sparks into radiant constellations.
+          </p>
+        </article>
+
+        <!-- Pillar 3 -->
+        <article
+          onclick="selectConstellation(2)"
+          class="cosmic-glass rounded-2xl p-6 sm:p-7 cursor-pointer group"
+        >
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-200/25 flex items-center justify-center text-amber-100 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+              </svg>
+            </div>
+            <span class="font-space text-[11px] tracking-[0.2em] uppercase text-slate-400">03 · Discovery</span>
+          </div>
+          <h3 class="font-cinzel text-lg tracking-[0.12em] text-white mb-2.5 group-hover:text-sky-200 transition-colors">
+            Beyond the Limits
+          </h3>
+          <p class="text-sm text-slate-300/80 font-light leading-relaxed">
+            Pioneering new frontiers where imagination meets precision engineering, elevating every journey far past conventional boundaries.
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Subtle Executive Footer -->
+    <footer class="max-w-6xl mx-auto w-full mt-14 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-space tracking-[0.18em] uppercase text-slate-400/80">
+      <div>© 2026 LUCKY PRADITYA CONNECTION</div>
+      <div class="text-sky-300/75">Beyond the Stars, Beyond the Limits.</div>
+    </footer>
+  </main>
+
+  <!-- Toast Notification Banner (Replaces any alert()) -->
+  <div
+    id="cosmic-toast"
+    class="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-xl bg-slate-950/85 backdrop-blur-xl border border-sky-400/30 text-xs font-space tracking-wider text-sky-100 shadow-[0_10px_30px_rgba(0,0,0,0.6)] opacity-0 translate-y-4 pointer-events-none transition-all duration-500"
+  ></div>
+
+  <script>
+    /**
+     * ============================================================================
+     * LUCKY PRADITYA CONNECTION — CINEMATIC COSMIC UNIVERSE ENGINE
+     * ============================================================================
+     * Architecture:
+     * 1. High-DPI Responsive HTML5 Canvas Renderer (60 FPS target)
+     * 2. Multi-Layer Parallax Starfield with Realistic Stellar Color Temperatures
+     * 3. Volumetric Procedural Cosmic Nebulae & Distant Tilted Spiral Galaxy
+     * 4. Precision 8-Scene Cinematic Director (~8.5s sequence, skippable & replayable)
+     * 5. Guiding Star with Anamorphic Lens Flare, Corona & Shockwave Pulse
+     * 6. Sleek Futuristic Orbital Rocket with Dynamic Banking & Ion-Plasma Trail
+     * 7. Optional Procedural Web Audio API Cosmic Ambient Synthesizer
+     * ============================================================================
+     */
+
+    (function () {
+      'use strict';
+
+      // -------------------------------------------------------------------------
+      // DOM REFERENCES
+      // -------------------------------------------------------------------------
+      const canvas = document.getElementById('cosmos-canvas');
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      const splashOverlay = document.getElementById('splash-overlay');
+      const splashBrandContainer = document.getElementById('splash-brand-container');
+      const splashTagline = document.getElementById('splash-tagline');
+      const splashProgressWrapper = document.getElementById('splash-progress-wrapper');
+      const splashProgressBar = document.getElementById('splash-progress-bar');
+      const sceneCaption = document.getElementById('scene-caption');
+      const sceneTimer = document.getElementById('scene-timer');
+
+      const telemetryLabel = document.getElementById('telemetry-label');
+      const skipIntroBtn = document.getElementById('skip-intro-btn');
+      const replayIntroBtn = document.getElementById('replay-intro-btn');
+      const mainInterface = document.getElementById('main-interface');
+
+      const audioToggleBtn = document.getElementById('audio-toggle-btn');
+      const iconSoundOff = document.getElementById('icon-sound-off');
+      const iconSoundOn = document.getElementById('icon-sound-on');
+      const audioLabel = document.getElementById('audio-label');
+
+      const ctrlSpeed = document.getElementById('ctrl-speed');
+      const ctrlNebula = document.getElementById('ctrl-nebula');
+      const ctrlTrail = document.getElementById('ctrl-trail');
+      const valSpeed = document.getElementById('val-speed');
+      const valNebula = document.getElementById('val-nebula');
+      const valTrail = document.getElementById('val-trail');
+
+      // -------------------------------------------------------------------------
+      // VIEWPORT & DPR MANAGEMENT
+      // -------------------------------------------------------------------------
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      // Offscreen Nebula & Galaxy Cache Canvas for silky 60 FPS blending
+      const nebulaCanvas = document.createElement('canvas');
+      const nebulaCtx = nebulaCanvas.getContext('2d');
+
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        buildProceduralNebulaLayer();
+      }
+
+      // -------------------------------------------------------------------------
+      // CINEMATIC TIMELINE & STATE
+      // -------------------------------------------------------------------------
+      const INTRO_DURATION = 8.5; // Total splash duration in seconds
+      const state = {
+        mode: 'intro', // 'intro' | 'home'
+        elapsed: 0,
+        lastFrameTime: performance.now(),
+        globalTime: 0,
+
+        // User-adjustable ambient universe multipliers
+        speedMultiplier: 1.0,
+        nebulaMultiplier: 1.0,
+        trailMultiplier: 1.0,
+
+        // Interactive Pointer / Gyro Parallax (-1 to 1)
+        pointerX: 0,
+        pointerY: 0,
+        smoothPointerX: 0,
+        smoothPointerY: 0,
+
+        // Virtual Camera State
+        camera: {
+          x: 0,
+          y: 0,
+          zoom: 1.0
+        },
+
+        // Guiding Star State
+        star: {
+          x: 0,
+          y: 0,
+          alpha: 0,
+          scale: 0,
+          pulseWave: 0 // 0 to 1 expanding cosmic ring
+        },
+
+        // Futuristic Rocket State
+        rocket: {
+          x: 0,
+          y: 0,
+          vx: 0,
+          vy: 0,
+          angle: -0.6,
+          alpha: 0,
+          thrust: 0,
+          trail: []
+        },
+
+        // Ambient Dust & Spark Particles
+        particles: [],
+        stars: []
+      };
+
+      // -------------------------------------------------------------------------
+      // PROCEDURAL STARFIELD INITIALIZATION
+      // -------------------------------------------------------------------------
+      const STAR_SPECTRA = [
+        { color: '#dbeafe', weight: 0.25 }, // Blue-white O/B
+        { color: '#ffffff', weight: 0.40 }, // Pure white A
+        { color: '#fff8e7', weight: 0.22 }, // Warm starlight F/G
+        { color: '#bae6fd', weight: 0.08 }, // Ethereal cyan
+        { color: '#fde68a', weight: 0.05 }  // Subtle gold K
+      ];
+
+      function pickStarColor() {
+        const r = Math.random();
+        let acc = 0;
+        for (const s of STAR_SPECTRA) {
+          acc += s.weight;
+          if (r <= acc) return s.color;
+        }
+        return '#ffffff';
+      }
+
+      function initStars() {
+        const area = width * height;
+        const count = Math.min(Math.max(Math.floor(area / 2800), 220), 650);
+        state.stars = [];
+
+        for (let i = 0; i < count; i++) {
+          // 3 parallax depth layers: 0 (far), 1 (mid), 2 (near)
+          const layerRoll = Math.random();
+          const layer = layerRoll < 0.62 ? 0 : layerRoll < 0.88 ? 1 : 2;
+          const depth = layer === 0 ? 0.22 : layer === 1 ? 0.55 : 1.0;
+
+          state.stars.push({
+            nx: Math.random(), // normalized 0..1
+            ny: Math.random(),
+            radius: layer === 0 ? (0.45 + Math.random() * 0.55) : layer === 1 ? (0.8 + Math.random() * 0.7) : (1.2 + Math.random() * 0.9),
+            baseAlpha: layer === 0 ? (0.28 + Math.random() * 0.45) : layer === 1 ? (0.45 + Math.random() * 0.45) : (0.65 + Math.random() * 0.35),
+            twinkleSpeed: 0.8 + Math.random() * 2.4,
+            twinklePhase: Math.random() * Math.PI * 2,
+            color: pickStarColor(),
+            depth,
+            hasSpike: layer === 2 && Math.random() > 0.78
+          });
+        }
+      }
+
+      // -------------------------------------------------------------------------
+      // PROCEDURAL VOLUMETRIC NEBULAE & DISTANT SPIRAL GALAXY
+      // -------------------------------------------------------------------------
+      function buildProceduralNebulaLayer() {
+        const nw = Math.max(Math.floor(width * 0.75), 600);
+        const nh = Math.max(Math.floor(height * 0.75), 600);
+        nebulaCanvas.width = nw;
+        nebulaCanvas.height = nh;
+
+        nebulaCtx.clearRect(0, 0, nw, nh);
+        nebulaCtx.globalCompositeOperation = 'screen';
+
+        // Cloud clusters creating rich cosmic depth (Midnight Blue, Purple, Violet, Cyan)
+        const clouds = [
+          { x: nw * 0.25, y: nh * 0.32, r: nw * 0.46, c1: 'rgba(28, 17, 56, 0.55)', c2: 'rgba(9, 17, 36, 0.0)' },
+          { x: nw * 0.72, y: nh * 0.28, r: nw * 0.48, c1: 'rgba(76, 40, 137, 0.38)', c2: 'rgba(28, 17, 56, 0.0)' },
+          { x: nw * 0.65, y: nh * 0.68, r: nw * 0.45, c1: 'rgba(14, 116, 144, 0.24)', c2: 'rgba(9, 17, 36, 0.0)' },
+          { x: nw * 0.36, y: nh * 0.72, r: nw * 0.42, c1: 'rgba(56, 189, 248, 0.14)', c2: 'rgba(3, 5, 10, 0.0)' },
+          { x: nw * 0.52, y: nh * 0.46, r: nw * 0.36, c1: 'rgba(109, 40, 217, 0.22)', c2: 'rgba(9, 17, 36, 0.0)' }
+        ];
+
+        for (const cl of clouds) {
+          const g = nebulaCtx.createRadialGradient(cl.x, cl.y, 0, cl.x, cl.y, cl.r);
+          g.addColorStop(0, cl.c1);
+          g.addColorStop(0.55, cl.c1.replace(/[\d.]+\)$/, '0.09)'));
+          g.addColorStop(1, cl.c2);
+          nebulaCtx.fillStyle = g;
+          nebulaCtx.beginPath();
+          nebulaCtx.arc(cl.x, cl.y, cl.r, 0, Math.PI * 2);
+          nebulaCtx.fill();
+        }
+
+        // Delicate Wispy Cosmic Filaments
+        for (let i = 0; i < 28; i++) {
+          const fx = nw * (0.15 + Math.random() * 0.7);
+          const fy = nh * (0.15 + Math.random() * 0.7);
+          const fr = nw * (0.08 + Math.random() * 0.16);
+          const isCyan = i % 3 === 0;
+          const g = nebulaCtx.createRadialGradient(fx, fy, 0, fx, fy, fr);
+          g.addColorStop(0, isCyan ? 'rgba(125, 211, 252, 0.08)' : 'rgba(139, 92, 246, 0.09)');
+          g.addColorStop(1, 'rgba(3, 5, 10, 0)');
+          nebulaCtx.fillStyle = g;
+          nebulaCtx.beginPath();
+          nebulaCtx.arc(fx, fy, fr, 0, Math.PI * 2);
+          nebulaCtx.fill();
+        }
+
+        // Distant Tilted Spiral Galaxy (Upper-Left / Mid-Background)
+        nebulaCtx.save();
+        const gx = nw * 0.28;
+        const gy = nh * 0.30;
+        nebulaCtx.translate(gx, gy);
+        nebulaCtx.rotate(-0.42);
+        nebulaCtx.scale(1, 0.38);
+
+        const galaxyRadius = Math.min(nw, nh) * 0.16;
+        const coreGrad = nebulaCtx.createRadialGradient(0, 0, 0, 0, 0, galaxyRadius);
+        coreGrad.addColorStop(0, 'rgba(255, 248, 231, 0.42)');
+        coreGrad.addColorStop(0.22, 'rgba(196, 181, 253, 0.22)');
+        coreGrad.addColorStop(0.58, 'rgba(56, 189, 248, 0.09)');
+        coreGrad.addColorStop(1, 'rgba(3, 5, 10, 0)');
+        nebulaCtx.fillStyle = coreGrad;
+        nebulaCtx.beginPath();
+        nebulaCtx.arc(0, 0, galaxyRadius, 0, Math.PI * 2);
+        nebulaCtx.fill();
+
+        // Spiral Dust Arms
+        nebulaCtx.strokeStyle = 'rgba(224, 242, 254, 0.14)';
+        nebulaCtx.lineWidth = 2.2;
+        for (let arm = 0; arm < 2; arm++) {
+          nebulaCtx.beginPath();
+          const armOffset = arm * Math.PI;
+          for (let a = 0.2; a < 4.4; a += 0.12) {
+            const rad = (a / 4.4) * galaxyRadius * 0.92;
+            const px = Math.cos(a + armOffset) * rad;
+            const py = Math.sin(a + armOffset) * rad;
+            if (a === 0.2) nebulaCtx.moveTo(px, py);
+            else nebulaCtx.lineTo(px, py);
+          }
+          nebulaCtx.stroke();
+        }
+        nebulaCtx.restore();
+      }
+
+      // -------------------------------------------------------------------------
+      // EASING & INTERPOLATION HELPERS
+      // -------------------------------------------------------------------------
+      function clamp(val, min, max) {
+        return Math.max(min, Math.min(max, val));
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      function smoothstep(edge0, edge1, x) {
+        const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+        return t * t * (3 - 2 * t);
+      }
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      // -------------------------------------------------------------------------
+      // PARTICLE EMITTER FOR ION TRAIL & COSMIC SPARKS
+      // -------------------------------------------------------------------------
+      function spawnIonParticle(x, y, vx, vy, boost = 1) {
+        if (state.particles.length > 260) return;
+        const spread = (Math.random() - 0.5) * 28;
+        const speedFactor = 0.25 + Math.random() * 0.45;
+        const palette = ['#7dd3fc', '#a78bfa', '#c4b5fd', '#fff8e7', '#38bdf8'];
+        state.particles.push({
+          x: x + (Math.random() - 0.5) * 3,
+          y: y + (Math.random() - 0.5) * 3,
+          vx: -vx * speedFactor + spread,
+          vy: -vy * speedFactor + spread,
+          life: 0,
+          maxLife: (0.45 + Math.random() * 0.65) * boost,
+          size: (1.1 + Math.random() * 2.1) * boost,
+          color: palette[Math.floor(Math.random() * palette.length)]
+        });
+      }
+
+      function updateParticles(dt) {
+        for (let i = state.particles.length - 1; i >= 0; i--) {
+          const p = state.particles[i];
+          p.life += dt;
+          if (p.life >= p.maxLife) {
+            state.particles.splice(i, 1);
+            continue;
+          }
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.vx *= 0.96;
+          p.vy *= 0.96;
+        }
+      }
+
+      // -------------------------------------------------------------------------
+      // SCENE CHOREOGRAPHY DIRECTOR (8 SCENES)
+      // -------------------------------------------------------------------------
+      function getSceneMeta(t) {
+        if (t < 1.2) return { code: 'SCENE 01 · DEEP VOID', caption: 'Awakening the Cosmos' };
+        if (t < 2.5) return { code: 'SCENE 02 · NEBULA BLOOM', caption: 'Unveiling Galactic Depth' };
+        if (t < 3.5) return { code: 'SCENE 03 · GUIDING STAR', caption: 'A Distant Light Ignites' };
+        if (t < 4.8) return { code: 'SCENE 04 · PURSUIT', caption: 'Chasing Limitless Horizons' };
+        if (t < 6.2) return { code: 'SCENE 05 · TRAJECTORY', caption: 'Navigating the Nebula' };
+        if (t < 7.2) return { code: 'SCENE 06 · CRESCENDO', caption: 'Illuminating the Universe' };
+        if (t < 8.5) return { code: 'SCENE 07 · IDENTITY', caption: 'Lucky Praditya Connection' };
+        return { code: 'PORTAL ACTIVE · LIVE COSMOS', caption: 'Beyond the Stars, Beyond the Limits.' };
+      }
+
+      function updateChoreography(dt) {
+        state.globalTime += dt * state.speedMultiplier;
+
+        // Smooth pointer parallax interpolation
+        state.smoothPointerX = lerp(state.smoothPointerX, state.pointerX, clamp(dt * 4, 0, 1));
+        state.smoothPointerY = lerp(state.smoothPointerY, state.pointerY, clamp(dt * 4, 0, 1));
+
+        const isMobile = width < 640;
+
+        if (state.mode === 'intro') {
+          state.elapsed += dt;
+          const t = state.elapsed;
+
+          // Update UI Telemetry & Progress
+          const progressPct = clamp((t / INTRO_DURATION) * 100, 0, 100);
+          splashProgressBar.style.width = `${progressPct}%`;
+          sceneTimer.textContent = `${Math.min(t, INTRO_DURATION).toFixed(1).padStart(4, '0')}s / 08.5s`;
+
+          const meta = getSceneMeta(t);
+          if (telemetryLabel.textContent !== meta.code) {
+            telemetryLabel.textContent = meta.code;
+            sceneCaption.textContent = meta.caption;
+          }
+
+          // Scene 1–3: Guiding Star Ignition & Graceful Path
+          const starAppear = smoothstep(2.45, 3.4, t);
+          const starCrescendo = smoothstep(6.1, 7.1, t);
+          state.star.alpha = starAppear;
+          state.star.scale = easeOutCubic(starAppear) * (1 + starCrescendo * 0.45);
+
+          // Trigger star shockwave at Scene 6
+          if (t >= 6.2 && t <= 6.3 && state.star.pulseWave === 0) {
+            state.star.pulseWave = 0.01;
+          }
+
+          // Guiding Star Trajectory across the cosmos (always ahead of rocket)
+          const starProgress = smoothstep(2.5, 8.5, t);
+          const startStarX = isMobile ? width * 0.72 : width * 0.68;
+          const startStarY = isMobile ? height * 0.28 : height * 0.26;
+          const endStarX = isMobile ? width * 0.78 : width * 0.76;
+          const endStarY = isMobile ? height * 0.22 : height * 0.21;
+
+          state.star.x = lerp(startStarX, endStarX, starProgress) + Math.sin(t * 1.4) * (isMobile ? 14 : 26);
+          state.star.y = lerp(startStarY, endStarY, starProgress) + Math.cos(t * 1.1) * (isMobile ? 10 : 18);
+
+          // Scene 4–6: Rocket Ignition & Curved Pursuit of the Guiding Star
+          const rocketEnter = smoothstep(3.45, 4.3, t);
+          const pursuitProgress = easeInOutCubic(clamp((t - 3.45) / 4.8, 0, 1));
+          state.rocket.alpha = rocketEnter;
+          state.rocket.thrust = smoothstep(3.45, 4.1, t) * (1 + starCrescendo * 0.35);
+
+          // Quadratic Bezier Trajectory from Lower-Left sweeping toward Upper-Right Star
+          const p0 = { x: -width * 0.08, y: height * 0.86 };
+          const p1 = { x: width * 0.32, y: height * 0.68 };
+          const p2 = {
+            x: state.star.x - (isMobile ? 72 : 135),
+            y: state.star.y + (isMobile ? 54 : 82)
+          };
+
+          const u = pursuitProgress;
+          const invU = 1 - u;
+          const nextX = invU * invU * p0.x + 2 * invU * u * p1.x + u * u * p2.x;
+          const nextY = invU * invU * p0.y + 2 * invU * u * p1.y + u * u * p2.y;
+
+          // Tangent derivative for realistic rocket orientation
+          const dx = 2 * invU * (p1.x - p0.x) + 2 * u * (p2.x - p1.x);
+          const dy = 2 * invU * (p1.y - p0.y) + 2 * u * (p2.y - p1.y);
+
+          state.rocket.vx = dx * 0.35;
+          state.rocket.vy = dy * 0.35;
+          state.rocket.x = nextX;
+          state.rocket.y = nextY;
+          state.rocket.angle = Math.atan2(dy, dx);
+
+          // Record Luminous Ribbon Trail & Spawn Ion Particles
+          if (rocketEnter > 0.05) {
+            const tailOffset = 18;
+            const tx = state.rocket.x - Math.cos(state.rocket.angle) * tailOffset;
+            const ty = state.rocket.y - Math.sin(state.rocket.angle) * tailOffset;
+
+            state.rocket.trail.push({ x: tx, y: ty, age: 0 });
+            if (Math.random() < 0.85 * state.trailMultiplier) {
+              spawnIonParticle(tx, ty, Math.cos(state.rocket.angle) * 140, Math.sin(state.rocket.angle) * 140, 1.0);
+            }
+          }
+
+          // Scene 5: Virtual Camera Tracking & Subtle Push-In
+          const camTrack = smoothstep(4.6, 6.4, t) * (1 - smoothstep(6.8, 8.3, t));
+          state.camera.x = lerp(0, (state.rocket.x - width * 0.5) * -0.14, camTrack);
+          state.camera.y = lerp(0, (state.rocket.y - height * 0.5) * -0.14, camTrack);
+          state.camera.zoom = 1 + smoothstep(0, 8.5, t) * 0.08 + camTrack * 0.04;
+
+          // Scene 7: Brand Title & Tagline Reveal
+          if (t >= 7.15) {
+            splashBrandContainer.classList.remove('opacity-0', 'translate-y-4');
+            splashBrandContainer.classList.add('opacity-100', 'translate-y-0');
+          }
+          if (t >= 7.55) {
+            splashTagline.classList.remove('opacity-0', 'translate-y-2');
+            splashTagline.classList.add('opacity-100', 'translate-y-0');
+          }
+
+          // Scene 8: Transition into Main Home Interface
+          if (t >= INTRO_DURATION) {
+            completeIntroSequence();
+          }
+        } else {
+          // -------------------------------------------------------------------
+          // LIVING AMBIENT HOME COSMOS MODE (Rocket continuously orbits/chases star)
+          // -------------------------------------------------------------------
+          const gt = state.globalTime;
+          state.star.alpha = 1;
+          state.star.scale = 1 + Math.sin(gt * 2.2) * 0.08;
+
+          // Star glides along a gentle figure-eight / harmonic arc in the upper cosmos
+          const cx = width * 0.5 + Math.cos(gt * 0.24) * (width * (isMobile ? 0.28 : 0.34));
+          const cy = height * (isMobile ? 0.22 : 0.24) + Math.sin(gt * 0.48) * (height * 0.09);
+
+          state.star.x = lerp(state.star.x, cx, clamp(dt * 2.5, 0, 1));
+          state.star.y = lerp(state.star.y, cy, clamp(dt * 2.5, 0, 1));
+
+          // Rocket smoothly steers toward a trailing formation behind the star
+          const targetX = state.star.x - Math.cos(gt * 0.24 + 0.35) * (isMobile ? 78 : 130);
+          const targetY = state.star.y - Math.sin(gt * 0.48 + 0.35) * (isMobile ? 48 : 75) + 28;
+
+          const prevX = state.rocket.x;
+          const prevY = state.rocket.y;
+
+          state.rocket.x = lerp(state.rocket.x, targetX, clamp(dt * 1.8 * state.speedMultiplier, 0, 1));
+          state.rocket.y = lerp(state.rocket.y, targetY, clamp(dt * 1.8 * state.speedMultiplier, 0, 1));
+          state.rocket.alpha = 1;
+          state.rocket.thrust = 0.85;
+
+          const moveDx = state.rocket.x - prevX;
+          const moveDy = state.rocket.y - prevY;
+          if (Math.hypot(moveDx, moveDy) > 0.05) {
+            const desiredAngle = Math.atan2(moveDy, moveDx);
+            // Shortest angular interpolation
+            let diff = desiredAngle - state.rocket.angle;
+            while (diff < -Math.PI) diff += Math.PI * 2;
+            while (diff > Math.PI) diff -= Math.PI * 2;
+            state.rocket.angle += diff * clamp(dt * 6, 0, 1);
+          }
+
+          const tailOffset = 18;
+          const tx = state.rocket.x - Math.cos(state.rocket.angle) * tailOffset;
+          const ty = state.rocket.y - Math.sin(state.rocket.angle) * tailOffset;
+          state.rocket.trail.push({ x: tx, y: ty, age: 0 });
+
+          if (Math.random() < 0.65 * state.trailMultiplier) {
+            spawnIonParticle(tx, ty, Math.cos(state.rocket.angle) * 90, Math.sin(state.rocket.angle) * 90, 0.85);
+          }
+
+          // Camera responds gently to pointer/gyro parallax
+          state.camera.x = lerp(state.camera.x, -state.smoothPointerX * 22, clamp(dt * 3, 0, 1));
+          state.camera.y = lerp(state.camera.y, -state.smoothPointerY * 16, clamp(dt * 3, 0, 1));
+          state.camera.zoom = lerp(state.camera.zoom, 1.04, clamp(dt * 2, 0, 1));
+        }
+
+        // Age & prune ribbon trail points
+        for (let i = state.rocket.trail.length - 1; i >= 0; i--) {
+          state.rocket.trail[i].age += dt * (1.25 / Math.max(state.trailMultiplier, 0.4));
+          if (state.rocket.trail[i].age >= 1.0) {
+            state.rocket.trail.splice(i, 1);
+          }
+        }
+
+        // Update star shockwave ring
+        if (state.star.pulseWave > 0) {
+          state.star.pulseWave += dt * 0.85;
+          if (state.star.pulseWave >= 1) {
+            state.star.pulseWave = 0;
+          }
+        }
+
+        updateParticles(dt);
+      }
+
+      // -------------------------------------------------------------------------
+      // RENDERING PIPELINE (60 FPS CANVAS)
+      // -------------------------------------------------------------------------
+      function render() {
+        const t = state.mode === 'intro' ? state.elapsed : INTRO_DURATION;
+
+        // 1. Deep Space Void Backdrop
+        ctx.fillStyle = '#03050a';
+        ctx.fillRect(0, 0, width, height);
+
+        // Scene Fade-In Visibility Factors
+        const starsVisibility = state.mode === 'intro' ? smoothstep(0.0, 1.4, t) : 1;
+        const nebulaVisibility = (state.mode === 'intro' ? smoothstep(1.1, 2.6, t) : 1) * state.nebulaMultiplier;
+
+        ctx.save();
+
+        // Apply Virtual Camera Transform
