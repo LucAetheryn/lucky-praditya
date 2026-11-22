@@ -33,7 +33,7 @@
       const telemetryLabel = document.getElementById('telemetry-label');
       const skipIntroBtn = document.getElementById('skip-intro-btn');
       const replayIntroBtn = document.getElementById('replay-intro-btn');
-      const mainInterface = document.getElementById('main-interface');
+      const cosmicLayer = document.getElementById('lp-cosmic-layer');
 
       const audioToggleBtn = document.getElementById('audio-toggle-btn');
       const iconSoundOff = document.getElementById('icon-sound-off');
@@ -845,7 +845,7 @@
         updateChoreography(dt);
         render();
 
-        requestAnimationFrame(animationLoop);
+        if (state.mode !== 'home') requestAnimationFrame(animationLoop);
       }
 
       // -------------------------------------------------------------------------
@@ -874,6 +874,7 @@
           document.querySelector('.cinema-vignette')?.remove();
           document.querySelector('.film-grain')?.remove();
           document.getElementById('splash-utility')?.remove();
+          if (cosmicLayer) cosmicLayer.style.display = 'none';
         }, 350);
       }
 
@@ -891,6 +892,7 @@
         splashTagline.classList.remove('opacity-100', 'translate-y-0');
 
         // Replay the intro without disabling the application underneath.
+        if (cosmicLayer) cosmicLayer.style.display = 'block';
         canvas.style.display = 'block';
 
         // Restore Splash Overlay
@@ -930,7 +932,8 @@
         }, 3200);
       }
 
-      window.startIntro = function () { replayIntroSequence(); };
+      // The original renderer invokes startIntro() after its first render. The cosmic overlay already owns the intro.
+      window.startIntro = function () {};
 
       window.triggerStarPulse = function () {
         state.star.pulseWave = 0.01;
