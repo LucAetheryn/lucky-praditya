@@ -170,92 +170,22 @@ body { min-height: 100vh; overflow-x: hidden; background: #03050a; }
   .film-grain, .brand-shimmer { animation: none !important; }
   *, *::before, *::after { scroll-behavior: auto !important; }
 }</style>
-</head>
-<body class="antialiased">
-  <!-- Background Cosmic Canvas -->
-  <canvas id="cosmos-canvas"></canvas>
-
-  <!-- Atmospheric Vignette & Subtle Cinema Grain -->
-  <div class="cinema-vignette"></div>
-  <div class="film-grain"></div>
-
-  <!-- Top Utility Bar (Audio Toggle & Intro Telemetry) -->
-  
-
-  <!-- CINEMATIC SPLASH SCREEN OVERLAY (Scenes 1–7) -->
-  <section
-    id="splash-overlay"
-    class="fixed inset-0 z-20 flex flex-col items-center justify-center px-6 pointer-events-none select-none transition-opacity duration-1000"
-  >
-    <!-- Scene 7 Brand Title Lockup -->
-    <div id="splash-brand-container" class="text-center max-w-4xl mx-auto opacity-0 transform translate-y-4 transition-all duration-1000 ease-out">
-      <!-- Subtle Celestial Emblem Above Title -->
-      <div class="flex items-center justify-center gap-3 mb-4 sm:mb-5">
-        <span class="h-[1px] w-8 sm:w-14 bg-gradient-to-r from-transparent to-sky-300/60"></span>
-        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-amber-100 drop-shadow-[0_0_12px_rgba(255,248,231,0.9)]" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 1L14.3 9.7L23 12L14.3 14.3L12 23L9.7 14.3L1 12L9.7 9.7L12 1Z" />
-        </svg>
-        <span class="h-[1px] w-8 sm:w-14 bg-gradient-to-l from-transparent to-sky-300/60"></span>
-      </div>
-
-      <!-- Main Brand Title -->
-      <h1
-        id="splash-title"
-        class="font-cinzel font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-[3.4rem] tracking-[0.22em] sm:tracking-[0.3em] leading-tight brand-shimmer drop-shadow-[0_4px_30px_rgba(56,189,248,0.28)]"
-      >
-        LUCKY PRADITYA CONNECTION
-      </h1>
-
-      <!-- Brand Tagline -->
-      <p
-        id="splash-tagline"
-        class="mt-4 sm:mt-5 font-space font-light text-xs sm:text-sm md:text-base tracking-[0.28em] sm:tracking-[0.38em] uppercase text-sky-200/85 opacity-0 transform translate-y-2 transition-all duration-1000 delay-300"
-      >
-        Beyond the Stars, Beyond the Limits.
-      </p>
-    </div>
-
-    <!-- Bottom Minimal Timeline Scrubber / Progress Bar -->
-    <div id="splash-progress-wrapper" class="fixed bottom-7 sm:bottom-9 left-1/2 -translate-x-1/2 w-[82%] max-w-md flex flex-col items-center gap-2.5 transition-opacity duration-700">
-      <div class="w-full h-[2px] bg-white/10 rounded-full overflow-hidden">
-        <div
-          id="splash-progress-bar"
-          class="h-full w-0 bg-gradient-to-r from-violet-400 via-sky-300 to-amber-100 shadow-[0_0_10px_rgba(125,211,252,0.8)] transition-[width] duration-75 ease-linear"
-        ></div>
-      </div>
-      <div class="w-full flex justify-between text-[10px] font-space tracking-[0.22em] uppercase text-slate-400/75">
-        <span id="scene-caption">Awakening the Cosmos</span>
-        <span id="scene-timer">00.0s / 08.5s</span>
-      </div>
-    </div>
-  </section>
-  <header class="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5 pointer-events-none">
-    <div id="telemetry-badge" class="pointer-events-auto flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-950/50 backdrop-blur-md border border-white/10 text-[11px] font-space tracking-[0.2em] uppercase text-slate-300/90 transition-all duration-700">
-      <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse shadow-[0_0_8px_#38bdf8]"></span>
-      <span id="telemetry-label">SCENE 01 · DEEP VOID</span>
-    </div>
-    <div class="pointer-events-auto flex items-center gap-2.5 sm:gap-3">
-      <button id="audio-toggle-btn" type="button" aria-label="Toggle Cosmic Ambient Sound" class="group flex items-center gap-2 px-3.5 py-2 rounded-full bg-slate-950/55 hover:bg-slate-900/75 backdrop-blur-md border border-white/10 hover:border-sky-400/40 text-xs font-space tracking-wider text-slate-300 transition-all duration-300 cursor-pointer">
-        <svg id="icon-sound-off" class="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-        <svg id="icon-sound-on" class="w-3.5 h-3.5 text-sky-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-        <span id="audio-label" class="hidden sm:inline text-[11px] uppercase tracking-[0.16em]">Sound Off</span>
-      </button>
-      <button id="skip-intro-btn" type="button" class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.14] backdrop-blur-md border border-white/15 hover:border-sky-300/40 text-[11px] font-space uppercase tracking-[0.2em] text-slate-200 transition-all duration-300 cursor-pointer"><span>Skip Intro</span></button>
-      <button id="replay-intro-btn" type="button" class="hidden items-center gap-2 px-4 py-2 rounded-full bg-sky-500/10 hover:bg-sky-400/20 backdrop-blur-md border border-sky-400/25 hover:border-sky-300/50 text-[11px] font-space uppercase tracking-[0.18em] text-sky-200 transition-all duration-300 cursor-pointer"><span>Replay Launch</span></button>
-    </div>
-  </header>
-  <main id="main-interface" class="relative z-10 min-h-screen w-full opacity-0 pointer-events-none translate-y-6 transition-all duration-1000 ease-out">
-    <div id="adm"></div><div id="site"></div><div id="ov" role="dialog" aria-modal="true"></div>
-    <div hidden aria-hidden="true">
-      <input id="ctrl-speed" type="range" value="1"><input id="ctrl-nebula" type="range" value="1"><input id="ctrl-trail" type="range" value="1">
-      <span id="val-speed">1.0x</span><span id="val-nebula">100%</span><span id="val-trail">100%</span>
-    </div>
-  </main>
-  <div
-    id="cosmic-toast"
-    class="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-xl bg-slate-950/85 backdrop-blur-xl border border-sky-400/30 text-xs font-space tracking-wider text-sky-100 shadow-[0_10px_30px_rgba(0,0,0,0.6)] opacity-0 translate-y-4 pointer-events-none transition-all duration-500"
-  ></div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" integrity="sha384-0w2KAL2YHP6wKOkUDzkCDGgVvfmHnj02DHeQ6XcHOgTfFsGyonKOpShMH1x6nk9o" crossorigin="anonymous"></script>
+<body>
+<canvas id="cosmos-canvas" aria-hidden="true"></canvas><div class="cinema-vignette" aria-hidden="true"></div><div class="film-grain" aria-hidden="true"></div>
+<section id="splash-overlay" class="fixed inset-0 z-20 flex flex-col items-center justify-center px-6 select-none transition-opacity duration-1000" aria-label="Lucky Praditya Connection introduction">
+<div id="splash-brand-container" class="text-center max-w-4xl mx-auto opacity-0 transform translate-y-4 transition-all duration-1000 ease-out">
+<div class="flex items-center justify-center gap-3 mb-4"><span class="h-px w-10 bg-sky-300/60"></span><span class="text-sky-100">✦</span><span class="h-px w-10 bg-sky-300/60"></span></div>
+<h1 id="splash-title" class="font-cinzel font-semibold text-2xl sm:text-4xl tracking-[0.22em] leading-tight brand-shimmer">LUCKY PRADITYA CONNECTION</h1>
+<p id="splash-tagline" class="mt-4 font-space font-light text-xs sm:text-sm tracking-[0.28em] uppercase text-sky-200/85 opacity-0 transform translate-y-2 transition-all duration-1000">Beyond the Stars, Beyond the Limits.</p></div>
+<div id="splash-progress-wrapper" class="fixed bottom-7 left-1/2 -translate-x-1/2 w-[82%] max-w-md flex flex-col items-center gap-2.5 transition-opacity duration-700">
+<div class="w-full h-[2px] bg-white/10 rounded-full overflow-hidden"><div id="splash-progress-bar" class="h-full w-0 bg-gradient-to-r from-violet-400 via-sky-300 to-amber-100 transition-[width] duration-75 ease-linear"></div></div>
+<div class="w-full flex justify-between text-[10px] font-space tracking-[0.22em] uppercase text-slate-400/75"><span id="scene-caption">Awakening the Cosmos</span><span id="scene-timer">00.0s / 08.5s</span></div></div></section>
+<div id="splash-utility" class="fixed top-4 right-4 z-30"><button id="skip-intro-btn" type="button" class="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-xs tracking-widest uppercase">Skip intro</button></div>
+<span id="telemetry-label" hidden></span><button id="replay-intro-btn" hidden type="button"></button>
+<button id="audio-toggle-btn" hidden type="button"></button><svg id="icon-sound-off" hidden></svg><svg id="icon-sound-on" hidden></svg><span id="audio-label" hidden></span>
+<input id="ctrl-speed" type="range" value="1" hidden><input id="ctrl-nebula" type="range" value="1" hidden><input id="ctrl-trail" type="range" value="1" hidden><span id="val-speed" hidden></span><span id="val-nebula" hidden></span><span id="val-trail" hidden></span>
+<div id="adm"></div><div id="site"></div><div id="ov" role="dialog" aria-modal="true"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" integrity="sha384-0w2KAL2YHP6wKOkUDzkCDGgVvfmHnj02DHeQ6XcHOgTfFsGyonKOpShMH1x6nk9o" crossorigin="anonymous"></script>
 <script src="js/state.js"></script>
 <script src="js/supabase.js"></script>
 <script src="js/icons.js"></script>
@@ -271,5 +201,5 @@ body { min-height: 100vh; overflow-x: hidden; background: #03050a; }
 <script src="js/main.js"></script>
 
   <script src="js/cosmic-splash.js"></script>
-</body>
-</html>
+
+<script src="js/cosmic-splash.js"></script></body>
