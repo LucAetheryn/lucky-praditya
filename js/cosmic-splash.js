@@ -35,10 +35,6 @@
       const replayIntroBtn = document.getElementById('replay-intro-btn');
       const cosmicLayer = document.getElementById('lp-cosmic-layer');
 
-      const audioToggleBtn = document.getElementById('audio-toggle-btn');
-      const iconSoundOff = document.getElementById('icon-sound-off');
-      const iconSoundOn = document.getElementById('icon-sound-on');
-      const audioLabel = document.getElementById('audio-label');
 
       const ctrlSpeed = document.getElementById('ctrl-speed');
       const ctrlNebula = document.getElementById('ctrl-nebula');
@@ -999,89 +995,106 @@
       }, { passive: true });
 
       // -------------------------------------------------------------------------
-      // OPTIONAL PROCEDURAL WEB AUDIO COSMIC SYNTHESIZER (No External Audio URLs)
+      // COSMIC AMBIENCE + INTERACTION SOUNDS
+      // Browsers require a real user gesture before audio can start.
       // -------------------------------------------------------------------------
       let audioCtx = null;
       let masterGain = null;
       let audioEnabled = false;
+      let ambientStarted = false;
 
       function initCosmicAudio() {
         if (audioCtx) return;
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
         if (!AudioContextClass) return;
-
         audioCtx = new AudioContextClass();
         masterGain = audioCtx.createGain();
-        masterGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        masterGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
         masterGain.connect(audioCtx.destination);
+      }
 
-        // Warm Ethereal Cosmic Pad (Dmaj9 celestial voicing: D2, A2, E3, F#3, A3)
-        const freqs = [73.42, 110.0, 164.81, 185.0, 220.0];
-        freqs.forEach((f, idx) => {
+      function startCosmicAmbience() {
+        if (!audioCtx || ambientStarted) return;
+        ambientStarted = true;
+        const now = audioCtx.currentTime;
+        [73.42, 110.0, 164.81, 185.0, 220.0].forEach((freq, idx) => {
           const osc = audioCtx.createOscillator();
-          const oscGain = audioCtx.createGain();
+          const tone = audioCtx.createGain();
           const filter = audioCtx.createBiquadFilter();
-
           osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
-          osc.frequency.setValueAtTime(f, audioCtx.currentTime);
-
+          osc.frequency.setValueAtTime(freq, now);
           filter.type = 'lowpass';
-          filter.frequency.setValueAtTime(420, audioCtx.currentTime);
-
-          oscGain.gain.setValueAtTime(0.035 / (idx * 0.4 + 1), audioCtx.currentTime);
-
+          filter.frequency.setValueAtTime(420, now);
+          tone.gain.setValueAtTime(0.025 / (idx * 0.4 + 1), now);
           osc.connect(filter);
-          filter.connect(oscGain);
-          oscGain.connect(masterGain);
-          osc.start();
+          filter.connect(tone);
+          tone.connect(masterGain);
+          osc.start(now);
         });
       }
 
       function playCosmicChime() {
         if (!audioCtx || !audioEnabled) return;
         const now = audioCtx.currentTime;
-        const notes = [587.33, 880.0, 1174.66]; // D5, A5, D6
-        notes.forEach((freq, i) => {
+        [587.33, 880.0, 1174.66].forEach((freq, i) => {
           const osc = audioCtx.createOscillator();
           const gain = audioCtx.createGain();
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, now + i * 0.08);
-          gain.gain.setValueAtTime(0.0001, now + i * 0.08);
-          gain.gain.exponentialRampToValueAtTime(0.035, now + i * 0.08 + 0.06);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.08 + 1.8);
+          osc.frequency.setValueAtTime(freq, now + i * 0.055);
+          gain.gain.setValueAtTime(0.0001, now + i * 0.055);
+          gain.gain.exponentialRampToValueAtTime(0.022, now + i * 0.055 + 0.035);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.055 + 0.72);
           osc.connect(gain);
           gain.connect(masterGain);
-          osc.start(now + i * 0.08);
-          osc.stop(now + i * 0.08 + 1.9);
+          osc.start(now + i * 0.055);
+          osc.stop(now + i * 0.055 + 0.76);
         });
       }
 
-      audioToggleBtn.addEventListener('click', () => {
+      function playInterfaceClick() {
+        if (!audioCtx || !audioEnabled) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const filter = audioCtx.createBiquadFilter();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1046.5, now);
+        osc.frequency.exponentialRampToValueAtTime(784, now + 0.085);
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(2600, now);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.018, now + 0.009);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + 0.13);
+      }
+
+      function unlockCosmicAudio() {
         initCosmicAudio();
         if (!audioCtx) return;
-
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        audioEnabled = !audioEnabled;
-        const now = audioCtx.currentTime;
-
-        if (audioEnabled) {
+        if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+        if (!audioEnabled) {
+          audioEnabled = true;
+          const now = audioCtx.currentTime;
           masterGain.gain.cancelScheduledValues(now);
-          masterGain.gain.setTargetAtTime(0.55, now, 0.5);
-          iconSoundOff.classList.add('hidden');
-          iconSoundOn.classList.remove('hidden');
-          audioLabel.textContent = 'Sound On';
+          masterGain.gain.setTargetAtTime(0.34, now, 0.7);
+          startCosmicAmbience();
           playCosmicChime();
-        } else {
-          masterGain.gain.cancelScheduledValues(now);
-          masterGain.gain.setTargetAtTime(0.0001, now, 0.25);
-          iconSoundOn.classList.add('hidden');
-          iconSoundOff.classList.remove('hidden');
-          audioLabel.textContent = 'Sound Off';
         }
-      });
+      }
+
+      document.addEventListener('pointerdown', unlockCosmicAudio, { once: true, capture: true });
+      document.addEventListener('keydown', unlockCosmicAudio, { once: true, capture: true });
+
+      document.addEventListener('click', (event) => {
+        const target = event.target.closest('a,button,[role="button"],[data-go],[data-act],[data-tab],[data-a],[data-au],.ih,[data-isl],.nav-item,.nav-link');
+        if (!target || target.disabled || target.getAttribute('aria-disabled') === 'true') return;
+        if (!audioEnabled) unlockCosmicAudio();
+        else playInterfaceClick();
+      }, true);
 
       // -------------------------------------------------------------------------
       // INITIALIZATION & RESIZE HOOKS
