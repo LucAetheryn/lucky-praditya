@@ -867,11 +867,13 @@
         replayIntroBtn.classList.remove('hidden');
         replayIntroBtn.classList.add('inline-flex');
 
-        // Reveal Main Application Home Interface
+        // Fade away only the temporary intro layer. The original app remains interactive underneath.
         setTimeout(() => {
           splashOverlay.style.display = 'none';
-          mainInterface.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-6');
-          mainInterface.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          canvas.style.display = 'none';
+          document.querySelector('.cinema-vignette')?.remove();
+          document.querySelector('.film-grain')?.remove();
+          document.getElementById('splash-utility')?.remove();
         }, 350);
       }
 
@@ -888,9 +890,8 @@
         splashTagline.classList.add('opacity-0', 'translate-y-2');
         splashTagline.classList.remove('opacity-100', 'translate-y-0');
 
-        // Hide Home Interface
-        mainInterface.classList.add('opacity-0', 'pointer-events-none', 'translate-y-6');
-        mainInterface.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        // Replay the intro without disabling the application underneath.
+        canvas.style.display = 'block';
 
         // Restore Splash Overlay
         splashOverlay.style.display = 'flex';
