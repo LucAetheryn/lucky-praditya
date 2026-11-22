@@ -1072,19 +1072,30 @@
         osc.stop(now + 0.13);
       }
 
+      function activateCosmicAudio() {
+        if (!audioCtx || audioEnabled) return;
+        audioEnabled = true;
+        const now = audioCtx.currentTime;
+        masterGain.gain.cancelScheduledValues(now);
+        masterGain.gain.setTargetAtTime(0.34, now, 0.7);
+        startCosmicAmbience();
+        playCosmicChime();
+      }
+
       function unlockCosmicAudio() {
         initCosmicAudio();
         if (!audioCtx) return;
-        if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
-        if (!audioEnabled) {
-          audioEnabled = true;
-          const now = audioCtx.currentTime;
-          masterGain.gain.cancelScheduledValues(now);
-          masterGain.gain.setTargetAtTime(0.34, now, 0.7);
-          startCosmicAmbience();
-          playCosmicChime();
-        }
+        if (audioCtx.state === 'suspended') audioCtx.resume().then(activateCosmicAudio).catch(() => {});
+        else activateCosmicAudio();
       }
+
+      // Attempt autoplay where the browser permits it; mobile browsers still unlock on the first tap.
+      window.addEventListener('load', () => {
+        initCosmicAudio();
+        if (audioCtx) audioCtx.resume().then(() => {
+          if (audioCtx.state === 'running') activateCosmicAudio();
+        }).catch(() => {});
+      }, { once: true });
 
       document.addEventListener('pointerdown', unlockCosmicAudio, { once: true, capture: true });
       document.addEventListener('keydown', unlockCosmicAudio, { once: true, capture: true });
