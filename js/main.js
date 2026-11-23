@@ -1,6 +1,10 @@
 /* Routing and boot. Loaded last: SRC must be captured after every script tag exists, because the Live Preview re-renders it.
    The Supabase SDK tag is removed from SRC so the preview iframe never loads the SDK or creates a client. */
-const SRC="<!DOCTYPE html>"+document.documentElement.outerHTML.replace(/<script[^>]*supabase-js[^>]*><\/script>\s*/gi,"");
+const SRC="<!DOCTYPE html>"+document.documentElement.outerHTML
+  .replace(/<script[^>]*supabase-js[^>]*><\\/script>\\s*/gi,"")
+  .replace(/<script[^>]*admin-pwa\\.js[^>]*><\\/script>\\s*/gi,"")
+  .replace(/<link[^>]*rel=["']manifest["'][^>]*>\\s*/gi,"")
+  .replace(/<link[^>]*admin-pwa\\.css[^>]*>\\s*/gi,"");
 let gate=0,ROUTED=false;
 const isAdminPath=()=>location.pathname.includes("/admin/");
 const isAdminRoute=()=>isAdminPath()||location.hash==="#admin";
@@ -31,7 +35,7 @@ async function loadPublic(){const c=DB.cacheRead(),fresh=DB.fetchPublic().then(v
   /* Never fetch a raw site-config.json in production: it could contain unpublished content. */
   fresh.then(late)}
 const pubP=EMB?Promise.resolve():LOCAL
-  ?(location.protocol==="file:"?Promise.resolve():Promise.race([fetch("site-config.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).then(j=>{if(!j||typeof j!=="object")return;PUB=mig(Object.assign(DEF(),pre(j)));let loc=false;try{loc=!!localStorage.getItem(KEY)}catch(e){}if(!loc){saved=clone(PUB);draft=clone(PUB)}}).catch(()=>{}),new Promise(r=>setTimeout(r,900))]))
+  ?(location.protocol==="file:"?Promise.resolve():Promise.race([fetch(location.pathname.includes("/admin/")?"../site-config.json":"site-config.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).then(j=>{if(!j||typeof j!=="object")return;PUB=mig(Object.assign(DEF(),pre(j)));let loc=false;try{loc=!!localStorage.getItem(KEY)}catch(e){}if(!loc){saved=clone(PUB);draft=clone(PUB)}}).catch(()=>{}),new Promise(r=>setTimeout(r,900))]))
   :(isAdminRoute()?Promise.resolve():loadPublic());
 if(!EMB&&!LOCAL&&sb())sb().auth.onAuthStateChange(ev=>{if(ev==="SIGNED_OUT")setTimeout(()=>{if(!Auth.leaving&&document.body.classList.contains("admin"))Auth.expired("out")},0)});
 addEventListener("hashchange",route);pubP.then(()=>{route();ROUTED=true});
