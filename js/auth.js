@@ -61,6 +61,6 @@ document.addEventListener("submit",async e=>{const f=e.target.closest&&e.target.
     else Auth.view(st,inRl?"#rl":undefined)
   }finally{btn.disabled=false}});
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-au]");if(!b||EMB)return;const a=b.dataset.au;
-  if(a==="back"){if(location.pathname.includes("/admin/")){const sitePath=location.pathname.replace(/admin\\/?$/,"");location.assign(sitePath||"/")}else{location.hash="";if(typeof route==="function")route()}}
+  if(a==="back"){if(location.pathname.includes("/admin/")){const sitePath=location.pathname.replace("/admin/","/");location.assign(sitePath||"/")}else{location.hash="";if(typeof route==="function")route()}}
   else if(a==="retry"){if(typeof route==="function"){built=false;route()}}
   else if(a==="logout"){if(typeof draft!=="undefined"&&typeof saved!=="undefined"&&JSON.stringify(draft)!==JSON.stringify(saved)&&!confirm("You have unsaved changes. Sign out anyway?"))return;Auth.logout()}});
