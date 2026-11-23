@@ -2,7 +2,7 @@
    The Supabase SDK tag is removed from SRC so the preview iframe never loads the SDK or creates a client. */
 const SRC="<!DOCTYPE html>"+document.documentElement.outerHTML.replace(/<script[^>]*supabase-js[^>]*><\/script>\s*/gi,"");
 let gate=0,ROUTED=false;
-const isAdminPath=()=>location.pathname.includes("/admin/")||/\\/admin$/.test(location.pathname);
+const isAdminPath=()=>location.pathname.includes("/admin/");
 const isAdminRoute=()=>isAdminPath()||location.hash==="#admin";
 const noindex=on=>{let m=document.querySelector('meta[name=robots]');if(on){if(!m){m=document.createElement("meta");m.name="robots";document.head.append(m)}m.content="noindex,nofollow"}else if(m)m.remove()};
 /* Authentication-aware guard for /admin/ and legacy #admin. The Control Center is not built until session + is_admin() are verified server-side. */
