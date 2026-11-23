@@ -4,7 +4,7 @@
 const ADM_EXT={};
 const Mig={backed:false,src:null,media:null,
   local(){try{const r=localStorage.getItem(KEY);return r?{raw:JSON.parse(r)}:null}catch(e){return null}},
-  async file(){try{const r=await fetch("site-config.json",{cache:"no-cache"});return r.ok?{raw:await r.json()}:null}catch(e){return null}},
+  async file(){try{const r=await fetch(location.pathname.includes("/admin/")?"../site-config.json":"site-config.json",{cache:"no-cache"});return r.ok?{raw:await r.json()}:null}catch(e){return null}},
   stat(c){const b64=[...c.connections.map(x=>x.icon),...c.highlights.map(x=>x.thumb)].filter(u=>/^data:/i.test(u||"")).length;
     return{connections:c.connections.length,highlights:c.highlights.length,now:c.now.length,sections:c.sections.length,images_inline:b64,bytes:JSON.stringify(c).length}},
   diff(a,b){const out=[];new Set([...Object.keys(a),...Object.keys(b)]).forEach(k=>{if(canon(a[k])!==canon(b[k]))out.push(k)});return out},
