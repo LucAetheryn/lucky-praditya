@@ -5,7 +5,7 @@ const SHELL = [
   "./",
   "./offline.html",
   "./admin-pwa.js",
-  "./admin-pwa.css",
+  "../css/admin-pwa.css",
   "./admin-icons/icon-192.svg",
   "./admin-icons/icon-512.svg",
   "./admin-icons/icon-maskable-512.svg",
