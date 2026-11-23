@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "Lucky Praditya — Admin App",
+  "short_name": "LP Admin",
+  "description": "Admin Control Center for Lucky Praditya.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0F0F10",
+  "theme_color": "#0F0F10",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    { "src": "./admin-icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./admin-icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./admin-icons/icon-maskable-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
