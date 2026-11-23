@@ -1,8 +1,8 @@
 /* Admin-scope-only service worker. Never intercept external services or requests outside /admin/. */
 const CACHE_PREFIX = "admin-shell-";
-const CACHE_NAME = "admin-shell-v3";
+const CACHE_NAME = "admin-shell-v2";
 const SHELL = ["./","./offline.html","./admin-pwa.js","./admin-pwa.css",
-  "./admin-icons/icon-192.png","./admin-icons/icon-512.png","./admin-icons/icon-maskable-512.png","./admin-icons/Admin-Lp.png"];
+  "./admin-icons/icon-192.png","./admin-icons/icon-512.png","./admin-icons/icon-maskable-512.png"];
 const ADMIN_BASE = new URL("./", self.registration.scope);
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
