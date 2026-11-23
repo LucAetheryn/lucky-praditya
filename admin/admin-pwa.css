@@ -4,3 +4,6 @@
 .lp-install-banner button[data-install]{background:#7c3aed;border-color:#7c3aed;font-weight:600}
 .lp-install-banner button[data-dismiss]{width:40px;padding:0;font-size:20px}
 @media(min-width:700px){.lp-install-banner{left:auto;right:20px;bottom:20px;width:min(440px,calc(100vw - 40px))}}
+/* Admin identity mark */
+.ah .admin-brand-logo{width:34px;height:34px;flex:0 0 34px;display:block;object-fit:contain;border-radius:9px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+.ah .admin-brand-title{margin-right:auto;font-size:.92rem;line-height:1.2;white-space:nowrap}
