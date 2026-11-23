@@ -1,10 +1,10 @@
 /* Routing and boot. Loaded last: SRC must be captured after every script tag exists, because the Live Preview re-renders it.
    The Supabase SDK tag is removed from SRC so the preview iframe never loads the SDK or creates a client. */
 const SRC="<!DOCTYPE html>"+document.documentElement.outerHTML
-  .replace(/<script[^>]*supabase-js[^>]*><\\/script>\\s*/gi,"")
-  .replace(/<script[^>]*admin-pwa\\.js[^>]*><\\/script>\\s*/gi,"")
-  .replace(/<link[^>]*rel=["']manifest["'][^>]*>\\s*/gi,"")
-  .replace(/<link[^>]*admin-pwa\\.css[^>]*>\\s*/gi,"");
+  .replace(/<script[^>]*supabase-js[^>]*><\/script>\s*/gi,"")
+  .replace(/<script[^>]*admin-pwa\.js[^>]*><\/script>\s*/gi,"")
+  .replace(/<link[^>]*rel=["']manifest["'][^>]*>\s*/gi,"")
+  .replace(/<link[^>]*admin-pwa\.css[^>]*>\s*/gi,"");
 let gate=0,ROUTED=false;
 const isAdminPath=()=>location.pathname.includes("/admin/");
 const isAdminRoute=()=>isAdminPath()||location.hash==="#admin";
