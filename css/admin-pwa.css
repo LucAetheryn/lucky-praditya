@@ -1,6 +1,0 @@
-.lp-install-banner{position:fixed;z-index:10000;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(22,22,30,.96);color:#ece9f7;box-shadow:0 12px 40px rgba(0,0,0,.4);backdrop-filter:blur(16px);font:14px/1.4 system-ui,sans-serif}
-.lp-install-banner>div{display:grid;gap:2px;flex:1;min-width:0}.lp-install-banner span{font-size:12px;color:#b8b5c8}
-.lp-install-banner button{min-height:40px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:transparent;color:inherit;font:inherit;cursor:pointer}
-.lp-install-banner button[data-install]{background:#7c3aed;border-color:#7c3aed;font-weight:600}
-.lp-install-banner button[data-dismiss]{width:40px;padding:0;font-size:20px}
-@media(min-width:700px){.lp-install-banner{left:auto;right:20px;bottom:20px;width:min(440px,calc(100vw - 40px))}}
